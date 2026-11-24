@@ -2,6 +2,8 @@
 
 # Project 3: Config Loader
 
+**Status:** Existing. **Original project:** 03.
+
 ## Goal
 
 Build a small configuration loader.

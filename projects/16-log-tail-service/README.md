@@ -1,6 +1,8 @@
 [← Back to projects](../README.md)
 
-# Project 11: Streaming Log Tail Service
+# Project 16: Streaming Log Tail Service
+
+**Status:** Existing. **Original project:** 11.
 
 ## Goal
 

@@ -2,6 +2,8 @@
 
 # Project 1: CLI TODO Tool
 
+**Status:** Existing. **Original project:** 01.
+
 ## Goal
 
 Build a command-line TODO app.

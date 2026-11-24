@@ -1,6 +1,8 @@
 [← Back to projects](../README.md)
 
-# Project 7: In-Memory HTTP API
+# Project 12: In-Memory HTTP API
+
+**Status:** Existing. **Original project:** 07.
 
 ## Goal
 

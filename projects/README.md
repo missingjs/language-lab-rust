@@ -1,137 +1,78 @@
 # Project-Based Learning Path
 
-The best way to learn Rust is through small projects that each target a specific set of concepts. Many ownership, lifetime, and API design questions only become real when you put your hands on code:
+Learn Rust through a sequence of application projects and focused mechanism labs. Reuse components across courses so that language reasoning, verification, and maintenance receive as much attention as adding features.
 
-- Who should own this data?
-- Should this function take `&T`, `&mut T`, or `T`?
-- Is this clone deliberate, or am I avoiding a design decision?
-- Should this be `Result` or a panic?
-- Is `Arc<Mutex<T>>` the right answer, or message passing?
-- Should this parse borrow `&str` or own `String`?
-- Where does unsafe begin and end?
+For the knowledge map and topics to study before each assignment, see [../roadmap.md](../roadmap.md). These are assignment specifications, not completed implementations or reference solutions.
 
-The project sequence increases difficulty gradually. Each project focuses on one to three major ideas.
+## The Twenty Courses
 
-For the conceptual map behind these projects, see [../roadmap.md](../roadmap.md).
+The sequence contains **11 existing courses, 7 new courses, and 2 expanded existing courses**. Numbers in directory names, course headings, and this table use the new sequence. The original-number column preserves the mapping from the earlier thirteen-project path.
 
----
+- **Existing:** original assignment scope retained; numbering and origin metadata updated.
+- **New:** added to cover a language mechanism, design skill, or verification/maintenance gap.
+- **Expanded existing:** original purpose retained with stronger required work and completion criteria.
 
-## The Thirteen Projects
+| No. | Course | Status | Original no. | Main focus |
+| --- | --- | --- | --- | --- |
+| 01 | [CLI TODO Tool](01-cli-todo/README.md) | Existing | 01 | Cargo, data modeling, ownership basics, persistence |
+| 02 | [Log Analyzer](02-log-analyzer/README.md) | Existing | 02 | Streaming file I/O, strings, maps, iterators |
+| 03 | [Config Loader](03-config-loader/README.md) | Existing | 03 | Configuration, typed errors, a small public API |
+| 04 | [Domain Validator](04-domain-validator/README.md) | Existing | 04 | Newtypes, enums, validation, pure domain logic |
+| 05 | [Resource Lifecycles and Interior Mutability](05-resource-lifecycle/README.md) | New | — | RAII, Drop, Rc/Weak, RefCell, observable behavior |
+| 06 | [Mini Parser](06-mini-parser/README.md) | Existing | 05 | Borrowing, lifetimes, recursive data, parsing |
+| 07 | [Text Store: Borrowed Views and Stable Handles](07-text-store/README.md) | New | — | Borrowing contracts, lifetime relationships, handle invalidation |
+| 08 | [Extensible Rule Library and Public API Evolution](08-rule-library/README.md) | New | — | Trait contracts, abstraction choices, downstream compatibility |
+| 09 | [Standard-Library Bounded Work Queue](09-sync-work-queue/README.md) | New | — | Threads, condition variables, shutdown, panic policy |
+| 10 | [Concurrent URL Checker](10-url-checker/README.md) | Existing | 06 | First async application, Tokio, limits, timeouts |
+| 11 | [Futures, Cancellation, and Async Task Lifecycles](11-async-lifecycle/README.md) | New | — | Polling, pinning, cancellation safety, blocking isolation |
+| 12 | [In-Memory HTTP API](12-http-api/README.md) | Existing | 07 | axum, shared state, handlers, integration tests |
+| 13 | [Database-Backed API](13-db-api/README.md) | Existing | 08 | sqlx, migrations, transactions, repository boundaries |
+| 14 | [Background Job Queue](14-job-queue/README.md) | Existing | 09 | Async workers, retries, cancellation, tracing |
+| 15 | [Cache or Rate Limiter](15-cache-or-rate-limiter/README.md) | Existing | 10 | Generics, shared state, time-dependent logic |
+| 16 | [Streaming Log Tail Service](16-log-tail-service/README.md) | Existing | 11 | Streaming, backpressure, disconnects, task cleanup |
+| 17 | [Performance Models, Measurement, and Optimization](17-performance-lab/README.md) | Expanded existing | 12 | Correctness references, profiling, repeatable benchmarks, tradeoffs |
+| 18 | [Unsafe Abstractions and an Initialization Buffer](18-unsafe-boundary/README.md) | Expanded existing | 13 | MaybeUninit, ownership transfer, panic safety, Miri |
+| 19 | [Invariant Verification and Failure Reduction](19-invariant-verification/README.md) | New | — | Property testing, bounded fuzzing, Loom, minimal failures |
+| 20 | [Workspaces, Compatibility, and Engineering Maintenance](20-workspace-maintenance/README.md) | New | — | Component integration, features, MSRV, upgrades, compatibility |
 
-1. [CLI TODO Tool](01-cli-todo/README.md) — Cargo, structs, enums, ownership basics, file I/O.
-2. [Log Analyzer](02-log-analyzer/README.md) — `BufReader`, iterators, streaming, string parsing.
-3. [Config Loader](03-config-loader/README.md) — `serde`, custom error types, API design.
-4. [Domain Validator](04-domain-validator/README.md) — newtype pattern, typed errors, primitive obsession.
-5. [Mini Parser](05-mini-parser/README.md) — `&str`, lifetimes, recursive data, zero-copy parsing.
-6. [Concurrent URL Checker](06-url-checker/README.md) — async Rust, Tokio, reqwest, bounded concurrency.
-7. [In-Memory HTTP API](07-http-api/README.md) — axum, shared state, `Arc`, error responses.
-8. [Database-Backed API](08-db-api/README.md) — sqlx, migrations, transactions, repositories.
-9. [Background Job Queue](09-job-queue/README.md) — Tokio tasks, channels, retry, cancellation.
-10. [Cache or Rate Limiter](10-cache-or-rate-limiter/README.md) — shared state, generics, time-dependent logic.
-11. [Streaming Log Tail Service](11-log-tail-service/README.md) — streaming responses, SSE/WebSocket, backpressure.
-12. [Performance Lab](12-performance-lab/README.md) — Criterion, profiling, allocation reduction, `Cow`.
-13. [Unsafe Boundary Exercise](13-unsafe-boundary/README.md) — raw pointers, FFI, safe abstractions, invariants.
+## Recommended Order and Prerequisites
 
----
+Use the numbered order as the default path. Study each course's concepts before its required work; the labs assess application and explanation rather than introducing advanced terms without preparation.
 
-## Recommended Project Order
+1. **01–06: foundations.** Build small tools, model data/errors, observe resource behavior, and work with borrowed text.
+2. **07–09: advanced data and synchronization.** Design borrowing/handle interfaces, evolve a library API, and establish thread-based coordination before async.
+3. **10–16: async and application engineering.** Start with a URL checker, examine the runtime/cancellation model, then apply it in services and workers.
+4. **17–20: evidence and maintenance.** Measure costs, audit a bounded unsafe abstraction, verify invariants, and integrate reusable components.
 
-```text
-1. CLI TODO Tool
-2. Log Analyzer
-3. Config Loader
-4. Domain Validator
-5. Mini Parser
-6. Concurrent URL Checker
-7. In-Memory HTTP API
-8. Database-Backed API
-9. Background Job Queue
-10. Cache or Rate Limiter
-11. Streaming Log Tail Service
-12. Performance Lab
-13. Unsafe Boundary Exercise
-```
+Project 11 deepens the async model after Project 10's first application. Projects 19 and 20 reuse earlier components and evidence instead of requiring new business systems. New and expanded course READMEs list their prerequisites explicitly.
 
-This order gradually builds:
+## Environment and Shared Completion Requirements
 
-```text
-syntax and tooling
-→ ownership and borrowing
-→ error modeling
-→ lifetimes
-→ async and concurrency
-→ web services
-→ databases
-→ production behavior
-→ performance
-→ unsafe boundaries
-```
+- Use Rust stable with the Rust 2024 edition. Record `rustc -Vv`, Cargo, target/OS, resolved dependency versions, and enabled features; keep the lockfile and avoid unrelated upgrades during a course.
+- Use Tokio 1.x for the async labs and record its resolved version/features. Record separate dated nightly toolchains for Miri and cargo-fuzz when required; keep the main development toolchain stable.
+- Prefer standard-library/local fixtures for mechanism labs. Web/database courses document their own service and dependency setup. No cloud deployment is required.
+- For each implemented course, include runnable usage, normal and relevant failure cases, and a brief ownership/error/design explanation. Match test depth to risk and the course's completion criteria.
+- Run `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, `cargo doc --no-deps`, and `cargo build --release` for the implemented package or workspace and selected supported configuration. Documentation tests are part of verification for public libraries. Project 20 adds the feature/MSRV matrix.
+- Keep intentionally failing code outside successful build targets, or use explicit compile-fail tests. Keep expected panics isolated and explain them.
+- For experiments, record the expected result before execution, compare actual evidence, and explain discrepancies. A successful tool run is not proof beyond its checked paths, inputs, or states.
 
----
+These common workflow requirements support the retained assignments without changing their domain feature sets. Specialized tools, benchmarks, concurrency, or production concerns are required only where the course calls for them.
 
 ## If Time Is Limited
 
-If you only have time for five projects, do these:
+For a first **foundation pass**, prioritize 01–06, including the resource lab. For a **core language continuation**, prioritize 07–11 and 17–20 while reusing the text library and runner. Project 15 is a useful additional shared-state design exercise.
 
-```text
-1. Log Analyzer
-2. Domain Validator
-3. Mini Parser
-4. Concurrent URL Checker
-5. Database-Backed API
-```
+Projects 12–13 and 16 emphasize web/database/streaming ecosystems; they can be deferred when language depth is the immediate goal. No abbreviated route should be treated as complete coverage of advanced Rust. The synchronous queue and async lifecycle lab train different models and do not replace one another.
 
-These cover the most important Rust skills:
+## Three-Version Method
 
-```text
-ownership
-borrowing
-lifetimes
-error handling
-iterators
-async
-concurrency
-API design
-serialization
-database access
-```
+For application projects:
 
----
+1. **Make it work:** implement the bounded required behavior and visible failures.
+2. **Make it idiomatic:** clarify ownership, errors, interfaces, modules, and unnecessary clones.
+3. **Make it robust:** add the relevant lifecycle, observability, verification, or performance evidence required by the course.
 
-## Three-Version Method for Every Project
-
-For each project, build it in three passes.
-
-### Version 1: Make It Work
-
-Focus on completing the feature set. Do not over-engineer.
-
-### Version 2: Make It Idiomatic
-
-Refactor for:
-
-```text
-clear ownership
-fewer clones
-better error types
-smaller modules
-cleaner API boundaries
-more tests
-```
-
-### Version 3: Make It Robust
-
-Add production-like concerns:
-
-```text
-logging / tracing
-timeouts
-configuration
-benchmarks
-graceful shutdown
-property tests
-Clippy cleanups
-```
+For mechanism labs, use **predict → observe → explain/refine** instead. Do not force networking, logging, timeouts, or benchmarks into every experiment. Keep advanced features in focused examples unless they improve the actual design.
 
 ---
 
@@ -200,10 +141,14 @@ Write unit, integration, doc, and property-based tests.
 Use rustfmt, Clippy, and Cargo workflows naturally.
 Build reliable CLI tools.
 Build async HTTP services with bounded concurrency.
-Use Arc, Mutex, channels, and tasks safely.
+Explain resource release, runtime borrow checking, and handle invalidation.
+Use threads, condition variables, atomics, channels, and async tasks with explicit contracts.
 Handle cancellation, timeouts, and graceful shutdown.
 Profile before optimizing.
 Reduce unnecessary allocation and cloning.
 Understand when unsafe is necessary and how to wrap it safely.
+Validate public API evolution against downstream callers.
+Use bounded fuzzing, Miri, and Loom with explicit coverage limits.
+Maintain a workspace with checked feature and MSRV claims.
 Read and understand production Rust crate APIs.
 ```

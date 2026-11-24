@@ -1,6 +1,8 @@
 [← Back to projects](../README.md)
 
-# Project 6: Concurrent URL Checker
+# Project 10: Concurrent URL Checker
+
+**Status:** Existing. **Original project:** 06.
 
 ## Goal
 
