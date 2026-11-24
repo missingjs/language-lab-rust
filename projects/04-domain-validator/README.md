@@ -2,6 +2,8 @@
 
 # Project 4: Domain Validator
 
+**Status:** Existing. **Original project:** 04.
+
 ## Goal
 
 Build a pure domain validation library.

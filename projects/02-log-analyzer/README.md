@@ -2,6 +2,8 @@
 
 # Project 2: Log Analyzer
 
+**Status:** Existing. **Original project:** 02.
+
 ## Goal
 
 Build a tool that reads a log file and prints statistics.

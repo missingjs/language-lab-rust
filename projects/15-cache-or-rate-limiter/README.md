@@ -1,6 +1,8 @@
 [← Back to projects](../README.md)
 
-# Project 10: Cache or Rate Limiter
+# Project 15: Cache or Rate Limiter
+
+**Status:** Existing. **Original project:** 10.
 
 ## Goal
 

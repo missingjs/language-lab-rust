@@ -1,6 +1,8 @@
 [← Back to projects](../README.md)
 
-# Project 5: Mini Parser
+# Project 6: Mini Parser
+
+**Status:** Existing. **Original project:** 05.
 
 ## Goal
 
